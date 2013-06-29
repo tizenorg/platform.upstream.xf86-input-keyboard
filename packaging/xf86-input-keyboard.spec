@@ -6,6 +6,7 @@ Summary:        Keyboard input driver for the Xorg X server
 Url:            http://xorg.freedesktop.org/
 Group:          System/X11/Servers/XF86_4
 Source0:        http://xorg.freedesktop.org/releases/individual/driver/%{name}-%{version}.tar.bz2
+Source1001: 	xf86-input-keyboard.manifest
 BuildRequires:  pkg-config
 BuildRequires:  pkgconfig(inputproto)
 BuildRequires:  pkgconfig(resourceproto)
@@ -22,6 +23,7 @@ available to this driver module for Linux, BSD, and Solaris.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %configure
@@ -44,6 +46,7 @@ udevadm trigger --subsystem-match=input --action=change
 exit 0
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %doc COPYING
 %dir %{_libdir}/xorg/modules/input
