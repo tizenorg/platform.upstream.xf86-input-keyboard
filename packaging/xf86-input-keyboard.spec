@@ -1,3 +1,5 @@
+%bcond_with x
+
 Name:           xf86-input-keyboard
 Version:        1.6.1
 Release:        0
@@ -15,6 +17,10 @@ BuildRequires:  pkgconfig(xorg-server) >= 1.4
 BuildRequires:  pkgconfig(xproto)
 Requires:       udev
 Requires:       xkeyboard-config >= 1.5
+
+%if !%{with x}
+ExclusiveArch:
+%endif
 
 %description
 kbd is an Xorg input driver for keyboards. The driver supports the
